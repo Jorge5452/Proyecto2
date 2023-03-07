@@ -22,7 +22,7 @@
         @endif
 
         <label for="nomb_prod">Nombre</label>
-        <input type="text" name="nomb_prod" id="nomb_prod" value="{{ $producto->nomb_prod }}"><br>
+        <input type="text" name="nomb_prod" id="nomb_prod" value=" {{ old('nomb_prod')  ??  $producto->nomb_prod }}"><br>
 
         <br>
         <label for="desc_prod">Descripcion  </label>

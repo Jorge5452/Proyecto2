@@ -22,11 +22,11 @@
         @endif
 
         <label for="nomb_prod">Nombre</label>
-        <input type="text" name="nomb_prod" id="nomb_prod"><br>
+        <input type="text" name="nomb_prod" id="nomb_prod" value="{{ old('nomb_prod') }}"><br>
 
         <br>
         <label for="desc_prod">Descripcion  </label>
-        <input type="text" name="desc_prod" id="desc_prod"><br>
+        <input type="text" name="desc_prod" id="desc_prod" ><br>
 
         <br>
         <label for="cant_prod">Cantidad  </label>

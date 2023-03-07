@@ -14,5 +14,12 @@
     <h2> {{ $producto->prec_prod }} </h2>
 
     <a href="{{ route('productos.index') }}">Inicio</a>
+
+    <form action=" {{ route('productos.destroy', $producto) }}" method="POST">
+        @csrf
+        @method('DELETE')
+        <button type="submit">BORRAR</button>
+    </form>
+
 </body>
 </html>
