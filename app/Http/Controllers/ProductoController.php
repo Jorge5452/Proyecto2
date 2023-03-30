@@ -9,6 +9,8 @@ class ProductoController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * 
+     * 
      */
     public function index()
     {
@@ -27,6 +29,7 @@ class ProductoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+
     public function store(Request $request)
     {
         $request->validate([
@@ -36,14 +39,20 @@ class ProductoController extends Controller
             'prec_prod' => ['required', 'numeric']
         ]);
 
-        $producto = new Producto(); 
-        $producto->nomb_prod    = $request->nomb_prod;
-        $producto->desc_prod    = $request->desc_prod;
-        $producto->cant_prod    = $request->cant_prod;
-        $producto->prec_prod    = $request->prec_prod;
-        $producto->save();
-    
-        return ProductoController::index();
+        // $producto = new Producto(); 
+        //$producto->nomb_prod    = $request->nomb_prod;
+        //$producto->desc_prod    = $request->desc_prod;
+        //$producto->cant_prod    = $request->cant_prod;
+        //$producto->prec_prod    = $request->prec_prod;
+        //$producto->save();
+
+   
+        
+        Producto::create($request->all());
+
+
+
+        return redirect()->route('productos.index');
     }
 
     /**
@@ -51,7 +60,7 @@ class ProductoController extends Controller
      */
     public function show(Producto $producto)
     {
-        return view('productos.productos-show', compact('producto')); 
+        return view('productos.productos-show', compact('producto'));
     }
 
     /**
@@ -74,13 +83,26 @@ class ProductoController extends Controller
             'prec_prod' => ['required', 'numeric']
         ]);
 
-        $producto->nomb_prod    = $request->nomb_prod;
-        $producto->desc_prod    = $request->desc_prod;
-        $producto->cant_prod    = $request->cant_prod;
-        $producto->prec_prod    = $request->prec_prod;
-        $producto->save();
-    
-        return redirect()->route('productos.show', $producto);
+        // $producto->nomb_prod    = $request->nomb_prod;
+        // $producto->desc_prod    = $request->desc_prod;
+        // $producto->cant_prod    = $request->cant_prod;
+        // $producto->prec_prod    = $request->prec_prod;
+        // $producto->save();
+
+        Producto::where('id', $producto->id)->update($request->except('_token', '_method'));
+
+        //        Producto::create([
+        //
+        //            'nomb_prod'  => $request->nomb_prod,
+        //            'desc_prod'  => $request->desc_prod,
+        //            'cant_prod'  => $request->cant_prod,
+        //            'prec_prod'  => $request->prec_prod,
+
+        //       ]);
+
+
+
+        return ProductoController::index();
     }
 
     /**

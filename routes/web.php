@@ -14,8 +14,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+
+//Route::get('/', function () {
+//    return view('/views/productos-index');
+//});
+
+Route::get('/', [ProductoController::class, 'index'])->middleware('auth');
+
+Route::resource('productos', ProductoController::class)->middleware('auth');
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 });
 
-Route::resource('productos', ProductoController::class);
+Route::get('/ejemplo', function () {
+    return view('components/ejemplo');
+});
